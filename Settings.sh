@@ -2,10 +2,11 @@
 
 pathPgDump=/usr/bin/
 pathPgRst=/usr/bin/
-Dbname=tmp3
+Dbname=shaitan
 hostname=localhost
 loginU=shaitan
 passU=qwerty
-SchemaName=myschema
+#SchemaName="-n public -n myschema"
+SchemaName=("-n" "myschema")
 ThreadsN=4
 DumpLocation=./godno.dmp
