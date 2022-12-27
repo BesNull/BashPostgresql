@@ -1,17 +1,20 @@
 #!/bin/bash
 
-. ~/Scripts/'Postgresql scripts'/settings
-
-cd ~
-echo "You are in: $(pwd)"
-echo '-----------------------------------------'
-
+PathToSettings=$(dirname "$0")
+echo "Имя скрипта <$( basename -- "$0"; )>, директория <$PathToSettings>";
+cd "$PathToSettings"
+if [[ -f settings ]]
+then
+    . ./settings
+    echo "Файл settings загружен"
+else
+    echo 'Файл settings не найден'
+    exit 1
+fi
 
 read -p 'Enter the database name: ' NewDb
 
-
-#createdb -U $loginU $NewDb
-sudo PGPASSWORD=$passU -u $loginU psql  << XENDX 
+sudo PGPASSWORD=$passU -u $loginU psql  << XENDX  # по идее нет разницы, где указывать юзера, до или после команды
 drop database if exists $NewDb;
 create database $NewDb;
 alter user $loginU set max_parallel_workers_per_gather=$ThreadsN;
