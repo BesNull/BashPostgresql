@@ -3,9 +3,9 @@
 PathToSettings=$(dirname "$0")
 echo "Имя скрипта <$( basename -- "$0"; )>, директория <$PathToSettings>";
 cd "$PathToSettings"
-if [[ -f settings ]]
+if [[ -f settings.sh ]]
 then
-    . ./settings
+    . ./settings.sh
     echo "Файл settings загружен"
 else
     echo 'Файл settings не найден'
